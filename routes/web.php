@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Role;
-use App\User;
+
+use App\Models\Security\Permission;
+use App\Models\Security\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,16 +26,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test', function () {
 
-//    return Role::create([
-//        'name' => 'Test',
-//        'slug' => 'test',
-//        'description' => 'Encardago del testing',
-//        'full_access' => 'no'
+//    return Permission::create([
+//        'name' => 'Listado de Permisos',
+//        'slug' => 'listado-de-permisos',
+//        'description' => 'Ver listado de Permisos'
 //    ]);
 
-    $user = User::find(1);
-    $user->roles()->sync([1]);
+//    return Permission::all();
+    $role = Role::find(1);
 
-    return $user->roles;
+    $role->permissions()->sync([1,2,3,4]);
+
+    return $role->permissions;
 
 });
