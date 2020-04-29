@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Security;
 
 use App\Http\Controllers\Controller;
+use App\Models\Security\Permission;
 use App\Models\Security\Role;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::get();
+
+        return view('role.create', compact('permissions'));
     }
 
     /**
@@ -38,7 +41,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
