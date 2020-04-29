@@ -8,11 +8,7 @@
                     <div class="card-header">Create Role</div>
 
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+                        @include('custom.message')
 
                         <form action="{{ route('role.store') }}" method="POST">
                             @csrf
@@ -59,10 +55,11 @@
                                     </label>
                                 </div>
                                 @endforeach()
-
-                                <button type="submit" class="btn btn-success float-right">Save</button>
+                                <hr>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

@@ -6,14 +6,9 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header"><h2>List of Roles</h2></div>
-
+                    @include('custom.message')
                     <div class="card-body">
                         <a class="btn btn-primary float-right mb-2" href="{{ route('role.create') }}">Create</a>
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
 
                         <table class="table table-hover">
                             <thead>
