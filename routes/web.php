@@ -33,10 +33,10 @@ Route::get('/test', function () {
 //    ]);
 
 //    return Permission::all();
-    $role = Role::find(1);
-
-    $role->permissions()->sync([1,2,3,4]);
-
-    return $role->permissions;
+//    $role = Role::find(1);
+//
+//    $role->permissions()->sync([1,2,3,4]);
+//
+//    return $role->permissions;
 
 });
