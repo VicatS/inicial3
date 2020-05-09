@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Edit Role</div>
+                    <div class="card-header">Show Role</div>
 
                     <div class="card-body">
                         @include('custom.message')
@@ -20,6 +20,7 @@
                                     <input type="text" class="form-control"
                                            placeholder="Name" name="name"
                                            value="{{ old('name', $role->name) }}"
+                                           readonly
                                     >
                                 </div>
 
@@ -27,6 +28,7 @@
                                     <input type="text" class="form-control"
                                            placeholder="Slug" name="slug"
                                            value="{{ old('slug', $role->slug) }}"
+                                           readonly
                                     >
                                 </div>
 
@@ -37,7 +39,7 @@
                                 <h3>Full Access</h3>
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="full_access_yes" name="full_access"
-                                           class="custom-control-input" value="yes"
+                                           class="custom-control-input" value="yes" disabled
                                            @if($role['full_access'] == "yes")
                                            checked
                                            @elseif(old('full_access') == "yes")
@@ -48,7 +50,7 @@
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="full_access_no" name="full_access"
-                                           class="custom-control-input" value="no"
+                                           class="custom-control-input" value="no" disabled
                                            @if($role['full_access'] == "no")
                                            checked
                                            @elseif(old('full_access') == "no")
@@ -65,7 +67,7 @@
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input"
                                                id="permission_{{ $permission->id }}"
-                                               name="permission[]" value="{{ $permission->id }}"
+                                               name="permission[]" value="{{ $permission->id }}" disabled
                                                @if(is_array(old('permission')) && in_array("$permission->id", old('permission')))
                                                checked
                                                @elseif(is_array($permission_role) && in_array("$permission->id", $permission_role))
@@ -81,7 +83,7 @@
                                     </div>
                                 @endforeach()
                                 <hr>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <a href="{{ route('role.edit', $role->id) }}" class="btn btn-success">Edit</a>
                                 <a href="{{ route('role.index') }}" class="btn btn-danger">Back</a>
                             </div>
                         </form>
