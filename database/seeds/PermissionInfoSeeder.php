@@ -48,6 +48,24 @@ class PermissionInfoSeeder extends Seeder
         // table role_user
         $userAdmin->roles()->sync([$rolAdmin->id]);
 
+        // User test
+        $userTest = User::create([
+            'name' => 'victor',
+            'email' => 'victor@victor.com',
+            'password' => Hash::make('secret1234')
+        ]);
+
+        //rol test
+        $rolTest =  Role::create([
+            'name' => 'Victor',
+            'slug' => 'victor',
+            'description' => 'User Test',
+            'full_access' => 'no'
+        ]);
+
+        // table role_user
+        $userTest->roles()->sync([$rolTest->id]);
+
         // permission
         $permission_all = [];
 

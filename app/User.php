@@ -3,13 +3,14 @@
 namespace App;
 
 use App\Models\Security\Role;
+use App\Traits\UserTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, UserTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -19,10 +20,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password'
     ];
-
-    public function roles() {
-        return $this->belongsToMany(Role::class)->withTimestamps();
-    }
 
     /**
      * The attributes that should be hidden for arrays.
