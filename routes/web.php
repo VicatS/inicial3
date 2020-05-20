@@ -3,6 +3,7 @@
 
 use App\Models\Security\Permission;
 use App\Models\Security\Role;
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Security'], function () {
     Route::resource('/role', 'RoleController')->names('role');
+});
+
+Route::get('/test', function () {
+    $user = User::find(2);
+
+//    $user->roles()->sync([2]);
+    Gate::authorize('haveaccess', 'role.show');
+    return $user;
+//    return $user->havePermission('role.create');
 });
 
 
