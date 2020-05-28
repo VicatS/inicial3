@@ -42,5 +42,14 @@ Route::get('/test', function () {
 //    return $user->havePermission('role.create');
 });
 
+Route::get('/test', function () {
+    $user = User::find(2);
+
+//    $user->roles()->sync([2]);
+    Gate::authorize('haveaccess', 'role.show');
+    return $user;
+//    return $user->havePermission('role.create');
+});
+
 
 
