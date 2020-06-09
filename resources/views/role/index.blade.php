@@ -8,7 +8,10 @@
                     <div class="card-header"><h2>List of Roles</h2></div>
                     @include('custom.message')
                     <div class="card-body">
-                        <a class="btn btn-primary float-right mb-2" href="{{ route('role.create') }}">Create</a>
+
+                        @can('haveaccess', 'role.create')
+                            <a class="btn btn-primary float-right mb-2" href="{{ route('role.create') }}">Create</a>
+                        @endcan
 
                         <table class="table table-hover">
                             <thead>
@@ -29,15 +32,26 @@
                                     <td>{{ $role->slug }}</td>
                                     <td>{{ $role->description }}</td>
                                     <td>{{ $role->full_access }}</td>
-                                    <td><a class="btn btn-info" href="{{ route('role.show', $role->id) }}">Show</a></td>
-                                    <td><a class="btn btn-success" href="{{ route('role.edit', $role->id) }}">Edit</a>
+                                    <td>
+                                        @can('haveaccess', 'role.show')
+                                            <a class="btn btn-info"
+                                               href="{{ route('role.show', $role->id) }}">Show</a>
+                                        @endcan
                                     </td>
                                     <td>
-                                        <form action="{{ route('role.destroy', $role->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger">Delete</button>
-                                        </form>
+                                        @can('haveaccess', 'role.edit')
+                                            <a class="btn btn-success"
+                                               href="{{ route('role.edit', $role->id) }}">Edit</a>
+                                        @endcan
+                                    </td>
+                                    <td>
+                                        @can('haveaccess', 'role.delete')
+                                            <form action="{{ route('role.destroy', $role->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger">Delete</button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
